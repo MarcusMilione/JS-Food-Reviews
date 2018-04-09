@@ -1,0 +1,82 @@
+<!-- 
+    GOALS:
+    
+    Create a website that pulls ratings from restaurant  in your 
+    area and lists them by top rated - lowest rated.  
+    After you have eaten at a certain restaurant  you can give it your 
+    own personal rating with a few notes and take it off the list. 
+
+    Current Problems
+    - Find an API to use
+
+"I can't complain about having a lot on my plate when my goal was to eat"
+
+ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+   
+</head>
+
+<body>
+    <div class="flex">
+        <div class="box">
+            <div class="box-title">INPUTS</div>
+            <div class="box-content">
+                <form id="inputs" method="post" action="http://localhost:3000/form">
+                    <input id="ll" name="ll" type="hidden">  
+                    <div class="input-style">
+                        <label for="Type">Meal Type</label>
+                        <select name="query">
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Brunch">Brunch</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Snack">Snack</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Dessert">Dessert</option>
+                        </select>
+                    </div>
+
+                    <div class="input-style">
+                        <label>Minimum Rating</label>
+                        <input name="minimum_rating" class="input-style" type="range" min="0" max="5" step="0.1">
+                    </div>
+
+                    <div class="input-style">
+                        <label>Distance (miles)</label>
+                        <input name="distance" class="input-style" type="number" placeholder="1.0" step="0.50" min="0" max="10">
+                    </div>
+
+                    <div class="input-style">
+                        <label>Price</label>
+                        <input name="price" class="input-style" type="range" min="0" max="3" step="1">
+                    </div>
+
+                    <div class="input-style">
+                        <input name="submit" id="send-data" type="submit" value="Submit"> 
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-title">RESULTS</div>
+            <div class="box-content" id="results"></div>
+        </div>
+        <div class="box">
+            <div class="box-title">VISITED</div>
+            <div class="box-content">THE CONTENT</div>
+        </div>
+    </div>
+<script defer src="main.js"></script>
+
+</body>
+
+</html>
