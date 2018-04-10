@@ -5,6 +5,7 @@ const http = require('http')
 const port = 3000
 const request = require('request');
 
+
 // require your modules
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -28,7 +29,19 @@ app.post('/form', (req, res) => {
 
   console.log(req.body);
 
-  foursquare.exploreVenues(req.body, function (error, venues) {
+  function getMiles(distance) {
+    return parseInt(req.body.distance) / 0.000621371192;
+  }
+  
+  var params = {
+    'll': req.body.ll,
+    'radius': getMiles(),
+    'query': req.body.query,
+    'price': req.body.price,
+    'limit': 5
+  };
+// console.log(params);
+  foursquare.exploreVenues(params, function (error, venues) {
     if (!error) {
       res.send(venues);
     } else {
@@ -36,7 +49,6 @@ app.post('/form', (req, res) => {
 
     }
   });
-
 
 
 
