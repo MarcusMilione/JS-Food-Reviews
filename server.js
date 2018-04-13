@@ -45,8 +45,7 @@ app.post('/form', (req, res) => {
     if (!error) {
       res.send(venues);
     } else {
-      console.log(error)
-
+      res.end(error)
     }
   });
 

@@ -31,11 +31,18 @@ const results = document.getElementById('results')
 const url = 'http://localhost:3000/form';
 const inputData = new FormData(inputs)
 console.log(inputData.entries());
-for (let [key, value] of inputData.entries()) { console.log(key, value); }
-// const formDataToJSON = data => [...data].reduce((obj, [key, val]) => Object.assign(obj, { [key]: val }), {})
-fetch(url, {
+
+const formDataToJSON = data => [...data].reduce((obj, [key, val]) => Object.assign(obj, { 
+    [key]: val }), {}) 
+    
+
+
+    var dataToJSON = formDataToJSON(inputData);
+   console.log(dataToJSON)
+
+    fetch(url, {
     method: 'POST',
-    body: inputData,
+    body:  JSON.stringify(dataToJSON),
     headers: { 'Content-Type': 'application/json; charset=utf-8' }
     
     }) 
@@ -48,6 +55,7 @@ fetch(url, {
     .catch(function(error) {
 
     });
+
 
     
 })
