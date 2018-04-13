@@ -16,13 +16,38 @@ function showPosition(position) {
     // x.innerHTML = "Latitude: " + position.coords.latitude +
     //     "<br>Longitude: " + position.coords.longitude;
 
-        document.getElementById("ll").value = position.coords.latitude + "," + position.coords.longitude;
-        
-    }
+    document.getElementById("ll").value = position.coords.latitude + "," + position.coords.longitude;
+
+}
 
 window.onload = getLocation;
 
+const inputs = document.getElementById("inputs");
+
+inputs.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+
+const results = document.getElementById('results')
+const url = 'http://localhost:3000/form';
+const inputData = new FormData(inputs)
+console.log(inputData.entries());
+for (let [key, value] of inputData.entries()) { console.log(key, value); }
+// const formDataToJSON = data => [...data].reduce((obj, [key, val]) => Object.assign(obj, { [key]: val }), {})
+fetch(url, {
+    method: 'POST',
+    body: inputData,
+    headers: { 'Content-Type': 'application/json; charset=utf-8' }
+    
+    }) 
+    .then((resp) => resp.json())
+    .then(function(venues) {
+        console.log(venues);
+    })
 
 
-// var result = document.getElementById("results");
-// results.innerHTML = 
+    .catch(function(error) {
+
+    });
+
+    
+})

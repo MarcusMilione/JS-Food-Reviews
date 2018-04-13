@@ -4,7 +4,7 @@ var foursquare = (require('foursquarevenues'))(auth.clientId, auth.clientSecret)
 const http = require('http')
 const port = 3000
 const request = require('request');
-
+const cors = require("cors")
 
 // require your modules
 const express = require('express')
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
 }))
 // this one is parsing application/json
 app.use(bodyParser.json())
-
+app.use(cors());
 // // POST endpoint /form
 app.post('/form', (req, res) => {
   //   // Callback
@@ -49,8 +49,6 @@ app.post('/form', (req, res) => {
 
     }
   });
-
-
 
 })
 // listen on port 3000
